@@ -1,0 +1,16 @@
+# Defaults for didiwiki initscript
+# sourced by /etc/init.d/didiwiki
+# installed at /etc/default/didiwiki by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# run central copy of didiwiki?
+ENABLE_DAEMON=yes
+
+# set ip address on which the daemon will listen
+LISTEN=127.0.0.1
+
+# set default didiwiki home directory
+HOME=/var/lib/didiwiki

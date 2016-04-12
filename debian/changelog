@@ -1,0 +1,198 @@
+didiwiki (0.5-11+deb8u2) jessie-security; urgency=high
+
+  * debian/patches:
+    - 91_check_page_path.patch: updated patch to correct restrictive behavior,
+      rendering pages beginning with non alpha-numeric UTF-8 characters, such
+      as "à", inaccessible.
+      Thank you Sergio Gelato <Sergio.Gelato@astro.su.se> for your report and
+      help! (Closes: #818708)
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Mon, 11 Apr 2016 10:02:56 -0400
+
+didiwiki (0.5-11+deb8u1) jessie-security; urgency=high
+
+  * NMU by the Security Team; thanks to Ignace Mouzannar
+    <mouzannar@gmail.com> and Alexander Izmailov <yarolig@gmail.com> for
+    providing the patch for CVE-2013-7448, correcting a major security
+    issue allowing didiwiki to display any file on the
+    filesystem. (Closes: #815111)
+
+ -- Sebastien Delafond <seb@debian.org>  Fri, 19 Feb 2016 15:30:23 +0100
+
+didiwiki (0.5-11) unstable; urgency=low
+
+  * debian/didiwiki.preinst:
+    - Added new file to force the stop of didiwiki before an upgrade. 
+      (Closes: 677008)
+  * debian/didiwiki.default:
+    - Added the $HOME variable.
+  * debian/didiwiki.init:
+    - Corrected the --listen flag when restarting the service. (Closes: #677007)
+    - Corrected the --home flag.
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Fri, 29 Jun 2012 01:10:56 +0400
+
+didiwiki (0.5-10) unstable; urgency=low
+
+  [ Ignace Mouzannar ]
+  * debian/didiwiki.init:
+    - The daemon now listens by default on localhost.
+      Thank you José Sebrosa <sebrosa@artenumerica.com> for the patch.
+      (Closes: #601489)
+  * debian/didiwiki.default:
+    - Added the LISTEN variable to listen by default on localhost.
+  * debian/didiwiki.init:
+    - Added Description field.
+    - Added the 'status' option.
+  * debian/rule:
+    - Replaced CDBS with dh7 features.
+  * debian/control:
+    - Removed dependency on cdbs.
+    - Added DM-Upload-Allowed field.
+  * debian/source/format:
+    - New file set to '3.0 (quilt)'.
+  * debian/didiwiki.docs:
+    - Added AUTHORS file.
+  * debian/copyright:
+    - Removed second upstream URL.
+
+  [ Jari Aalto ]
+  * Remove deprecated dpatch and upgrade to packaging format "3.0 quilt".
+  * debian/compat
+    - Update to 9.
+  * debian/control
+    - Update to Standards-Version to 3.9.3 and debhelper to 9.
+  * debian/rules:
+    - Added hardening flags.
+  * debian/patches
+    - Remove deprecated dpatch and upgrade to packaging format "3.0 quilt".
+      (Closes: #668005)
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Sun, 08 Apr 2012 19:18:40 +0400
+
+didiwiki (0.5-9) unstable; urgency=low
+
+  * Added debian/README.source pointing to the dpatch documentation.
+  * Added debian/patches/90_search_engine.dpatch:
+    - Makes search case insensitive.
+    - Removes redirection to page when the search terms are identical to 
+      a page name.
+    - Adds a new behaviour: if the search returns only one page, then it 
+      redirects the user there.
+    Patch based on initial work provided by Carlo Mandelli <camandel@gmail.com>
+    (Closes: #536484)
+  * Modified debian/patches/40_spelling.dpatch:
+    - Corrects a minor typo in src/wiki.c
+  * Standards-Version bumped to 3.8.3.
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Tue, 06 Oct 2009 21:08:17 +0200
+
+didiwiki (0.5-8) unstable; urgency=low
+
+  * New maintainer (Closes: #531177)
+  * Added access log support using syslog. 
+    Patch provided by Carlo Mandelli <camandel@gmail.com> (Closes: #486285)
+  * Added the possibility to bind to an IP address other than the default
+    "0.0.0.0" using the -l or --listen flags.
+    Patch based on initial work provided by Carlo Mandelli <camandel@gmail.com>
+    (Closes: #536787)
+  * Completed the usage() function to print a user friendly help message
+  * Added the --help flag that displays the usage() message
+  * Added SIGINT and SIGTERM handlers in order to stop didiwiki cleanly and
+    log the events
+  * Updated the man page including the new features listed above
+  * Corrected a compilation warning: "pointer targets in passing argument 
+    3 of ‘...’ differ in signedness" (http.c:228 and http.c:510)
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Mon, 20 Jul 2009 19:19:25 +0200
+
+didiwiki (0.5-7) unstable; urgency=low
+
+  * QA upload.
+  * Added the '-R' option to dh_installinit in order to restart the didiwiki 
+    service after an upgrade. And removed overlapping functions from the 
+    didiwiki.postinst file to prevent the service from being started twice. 
+    (Closes: #533862)
+  * Standards-Version bumped to 3.8.2.
+  * Added a patch to fix some spelling errors reported by lintian.
+  * Service would not start if default home (/var/lib/didiwiki) did not exist. 
+    Added var/lib/didiwiki in the didiwiki.dirs file to fix this issue.
+  * Corrected ownership of /var/lib/didiwiki to didiwiki:didiwiki
+  * Added a commented watch file, and removed the lintian override
+    (debian-watch-file-is-missing)
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Sun, 21 Jun 2009 19:52:12 +0200
+
+didiwiki (0.5-6) unstable; urgency=low
+
+  * QA upload.
+  * Maintainer changed to QA Group.
+  * Add Build-depends on dpatch and patchutils.
+  * Rewrited didiwiki.postinst to use invoke-rc.d to comply with
+    the version 3.7.0 of the Policy.
+  * Standards-Version bumped to 3.8.1.
+  * Since the src/ directory had modified files without using patches, I
+    replaced these modified-files with the original ones and added a patch 
+    to re-introduce these changes to keep the compatibility backwards.
+    This patch can be found in debian/patches/10_modified_code.dpatch.
+  * Removed the non-existant '-m 644' option of dh_install from
+    debian/rules. (Closes: #518861)
+  * Added a patch to fix the mangling on (unicode) wiki pages' names.
+    Patch provided by Alexey Khudyakov <alexey.skladnoy@gmail.com>
+    (Closes: #420696)
+  * Added a patch to remove the double newline on preformatted text.
+    Patch provided by Neil Stockbridge <neil@dist.ro> (Closes: #376457)
+  * Added Lintian override and removed the watch file since upstream URL is
+    not working anymore. (Closes: #449902)
+  * Added a note on the copyright file regarding the "dead" upstream's URL.
+    (Closes: #477049)
+
+ -- Mauro Lizaur <mauro@cacavoladora.org>  Mon, 01 Jun 2009 00:11:31 -0300
+
+didiwiki (0.5-5.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Added LSB formatted dependency info in init.d script (closes: #468458)
+  * Fixed bashism in postrm (closes: #472227)
+
+ -- Peter Eisentraut <petere@debian.org>  Wed, 02 Apr 2008 00:54:30 +0200
+
+didiwiki (0.5-5) unstable; urgency=low
+
+  * debian/didiwiki.postrm: Remove /var/lib/didiwiki/styles.css if it
+    is still a symlink to /etc/didiwiki/styles.css when the package is
+    purged. Closes #340121.
+  * Remove old FSF address from debian/copyright. Fixes
+    old-fsf-address-in-copyright-file Lintian warning.
+
+ -- Hanna Wallach <hmw26@cam.ac.uk>  Fri, 24 Mar 2006 19:48:15 -0500
+
+didiwiki (0.5-4) unstable; urgency=low
+
+  * Add adduser to Depends. Fixes 
+    maintainer-script-needs-depends-on-adduser Lintian warning.
+  * src/didi.c: Make didiwiki's port configurable.
+  * Change Standards-Version to 3.6.2. Fixes out-of-date-standards-version
+    Lintian warning.
+
+ -- Hanna Wallach <hmw26@cam.ac.uk>  Sun, 28 Aug 2005 12:39:37 -0400
+
+didiwiki (0.5-3) unstable; urgency=low
+
+  * src/wiki.c: Use user-defined data as parameters to fixed format 
+    string rather than as the format string itself (closes #302273).
+
+ -- Hanna Wallach <hmw26@cam.ac.uk>  Wed, 30 Mar 2005 21:41:49 -0500
+
+didiwiki (0.5-2) unstable; urgency=low
+
+  * Use dh_install rather than install to install styles.css.
+
+ -- Hanna Wallach <hmw26@cam.ac.uk>  Wed,  2 Feb 2005 00:44:19 +0000
+
+didiwiki (0.5-1) unstable; urgency=low
+
+  * Initial Release (closes #289973).
+
+ -- Hanna Wallach <hmw26@cam.ac.uk>  Wed, 12 Jan 2005 23:13:30 -0500
+
