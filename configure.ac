@@ -9,12 +9,13 @@ AM_INIT_AUTOMAKE()
 AC_PROG_CC
 
 # Checks for libraries.
+AC_CHECK_LIB([markdown], [mkd_string])
 
 # Checks for header files.
 AC_HEADER_DIRENT
 AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
-AC_CHECK_HEADERS([arpa/inet.h netinet/in.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([arpa/inet.h netinet/in.h stdlib.h string.h sys/socket.h sys/time.h unistd.h mkdio.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
