@@ -2,7 +2,6 @@ Source: didiwiki
 Section: web
 Priority: optional
 Maintainer: Ignace Mouzannar <mouzannar@gmail.com>
-DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.3
 
