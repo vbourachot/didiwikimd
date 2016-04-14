@@ -159,14 +159,17 @@ changes_compar(const struct dirent **d1, const struct dirent **d2)
 }
 
 WikiPageList**
-wiki_get_pages(int  *n_pages, char *expr)
+wiki_get_pages(int  *n_pages, char *expr, int alpha)
 {
   WikiPageList  **pages;
   struct dirent **namelist;
-  int             n, i = 0;
+  int             n, i = 0, j = 0;
   struct stat     st;
 
-  n = scandir(".", &namelist, 0, (void *)changes_compar);
+  if (alpha)
+    n = scandir(".", &namelist, 0, alphasort);
+  else
+    n = scandir(".", &namelist, 0, (void *)changes_compar);
   
   pages = malloc(sizeof(WikiPageList*)*n);
 
@@ -208,7 +211,45 @@ wiki_get_pages(int  *n_pages, char *expr)
 
   if (i==0) return NULL;
 
+  if (alpha)
+    {
+      /* Array is alphasort descending. Reverse it */
+      WikiPageList* temp = malloc(sizeof(WikiPageList));
+      for (j = 0; j < i/2; j++)
+        {
+          temp = pages[j];
+		  pages[j] = pages[i-j-1];
+		  pages[i-j-1] = temp;
+        }
+	  /* FIXME */
+	  /* free(temp); */
+    }
+  
   return pages;
+}
+
+void
+wiki_show_index_page(HttpResponse *res)
+{
+  WikiPageList **pages = NULL;
+  int            n_pages, i;
+
+  wiki_show_header(res, "Index", FALSE);
+
+  pages = wiki_get_pages(&n_pages, NULL, 1);
+
+  http_response_printf(res, "<ul>");
+  for (i=0; i<n_pages; i++)
+	{
+	  http_response_printf(res, "<li><a href='%s'>%s</a></li>\n",
+						   pages[i]->name,
+						   pages[i]->name);
+	}
+  http_response_printf(res, "</ul>");
+
+  wiki_show_footer(res);
+  http_response_send(res);
+  exit(0);
 }
 
 void
@@ -219,8 +260,9 @@ wiki_show_changes_page(HttpResponse *res)
 
   wiki_show_header(res, "Changes", FALSE);
 
-  pages = wiki_get_pages(&n_pages, NULL);
+  pages = wiki_get_pages(&n_pages, NULL, 0);
 
+  http_response_printf(res, "<ul>");
   for (i=0; i<n_pages; i++)
     {
       struct tm   *pTm;
@@ -228,11 +270,12 @@ wiki_show_changes_page(HttpResponse *res)
 
       pTm = localtime(&pages[i]->mtime);
       strftime(datebuf, sizeof(datebuf), "%Y-%m-%d %H:%M", pTm);
-      http_response_printf(res, "<a href='%s'>%s</a> %s<br />\n", 
+      http_response_printf(res, "<li><a href='%s'>%s</a> <i>%s</i></li>\n",
 			   pages[i]->name, 
 			   pages[i]->name, 
 			   datebuf);
     }
+  http_response_printf(res, "</ul>");
 
   wiki_show_footer(res);
   http_response_send(res);
@@ -254,7 +297,7 @@ wiki_show_search_results_page(HttpResponse *res, char *expr)
       exit(0);
     }
 
-  pages = wiki_get_pages(&n_pages, expr);
+  pages = wiki_get_pages(&n_pages, expr, 0);
 
   if (pages)
     {
@@ -426,7 +469,7 @@ wiki_handle_rest_call(HttpRequest  *req,
 	  if (expr == NULL)
 	    expr = http_request_get_query_string(req);
 	  
-	  pages = wiki_get_pages(&n_pages, expr);
+	  pages = wiki_get_pages(&n_pages, expr, 0);
 
 	  if (pages)
 	    {
@@ -517,7 +560,12 @@ wiki_handle_http_request(HttpRequest *req)
       exit(0);
     }
 
-  if (!strcmp(page, "Changes"))
+  if (!strcmp(page, "Index"))
+    {
+      /* list all pages */
+      wiki_show_index_page(res);
+    }
+  else if (!strcmp(page, "Changes"))
     {
       /* TODO list recent changes */
       wiki_show_changes_page(res);
