@@ -22,137 +22,6 @@
 static char* CssData = STYLESHEET;
 
 static char *
-get_line_from_string(char **lines, int *line_len)
-{
-  int   i;
-  char *z = *lines;
-
-  if( z[0] == '\0' ) return NULL;
-
-  for (i=0; z[i]; i++)
-    {
-      if (z[i] == '\n')
-	{
-	  if (i > 0 && z[i-1]=='\r')
-	    { z[i-1] = '\0'; }
-	  else
-	    { z[i] = '\0'; }
-	  i++;
-	  break;
-	}
-    }
-
-  /* advance lines on */
-  *lines      = &z[i];
-  *line_len -= i;
-
-  return z;
-}
-
-static char*
-check_for_link(char *line, int *skip_chars)
-{
-  char *start =  line;
-  char *p     =  line;
-  char *url   =  NULL;
-  char *title =  NULL;
-  char *result = NULL;
-  int   found = 0;
-
-  if (*p == '[') 		/* [ link [title] ] */
-    {
-      /* XXX TODO XXX 
-       * Allow links like [the Main page] ( covert to the_main_page )
-       * 
-       *
-       */
-
-
-      url = start+1; *p = '\0'; p++;
-      while (  *p != ']' && *p != '\0' && !isspace(*p) ) p++;
-
-      if (isspace(*p))
-	{
-	  *p = '\0';
-	  title = ++p; 
-	  while (  *p != ']' && *p != '\0' ) 
-	    p++;
-	}
-
-      *p = '\0';
-      p++;
-    }                     
-  else if (!strncasecmp(p, "http://", 7)
-	   || !strncasecmp(p, "mailto://", 9)
-	   || !strncasecmp(p, "file://", 7))
-    {
-      while ( *p != '\0' && !isspace(*p) ) p++;
-
-
-      found = 1;
-    }
-  else if (isupper(*p))      	/* Camel-case */
-    {
-      int num_upper_char = 1;
-      p++;
-      while ( *p != '\0' && isalnum(*p) )
-	{
-	  if (isupper(*p))
-	    { found = 1; num_upper_char++; }
-	  p++;
-	}
-
-      if (num_upper_char == (p-start)) /* Dont make ALLCAPS links */
-	return NULL;
-    }
-
-  if (found)  /* cant really set http/camel links in place */
-    {
-      url = malloc(sizeof(char) * ((p - start) + 2) );
-      memset(url, 0, sizeof(char) * ((p - start) + 2));
-      strncpy(url, start, p - start);
-      *start = '\0';
-    }
-
-  if (url != NULL)
-    {
-      int len = strlen(url);
-
-      *skip_chars = p - start;
-
-      /* is it an image ? */
-      if (!strncmp(url+len-4, ".gif", 4) || !strncmp(url+len-4, ".png", 4) 
-	  || !strncmp(url+len-4, ".jpg", 4) || !strncmp(url+len-5, ".jpeg", 5))
-	{
-	  if (title)
-	    asprintf(&result, "<a href='%s'><img src='%s' border='0'></a>",
-		     title, url);
-	  else
-	    asprintf(&result, "<img src='%s' border='0'>", url);
-	}
-      else
-	{
-	  char *extra_attr = "";
-
-	  if (!strncasecmp(url, "http://", 7))
-	    extra_attr = " title='WWW link' ";
-
-	  if (title)
-	    asprintf(&result,"<a %s href='%s'>%s</a>", extra_attr, url, title);
-	  else
-	    asprintf(&result, "<a %s href='%s'>%s</a>", extra_attr, url, url);
-	}
-
-      
-
-      return result;
-    }
-
-  return NULL;
-}
-
-
-static char *
 file_read(char *filename)
 {
   struct stat st;
@@ -199,14 +68,6 @@ file_write(char *filename, char *data)
   return 1;
 }
 
-static int
-is_wiki_format_char_or_space(char c)
-{
-  if (isspace(c)) return 1;
-  if (strchr("/*_-", c)) return 1; 
-  return 0;
-}
-
 void
 wiki_print_data_as_html(HttpResponse *res, char *raw_page_data)
 {
@@ -240,8 +101,6 @@ wiki_redirect(HttpResponse *res, char *location)
 
   exit(0);
 }
-
-
 
 void
 wiki_show_page(HttpResponse *res, char *wikitext, char *page)
@@ -298,8 +157,6 @@ changes_compar(const struct dirent **d1, const struct dirent **d2)
     else
       return -1;
 }
-
-
 
 WikiPageList**
 wiki_get_pages(int  *n_pages, char *expr)
