@@ -214,15 +214,13 @@ wiki_get_pages(int  *n_pages, char *expr, int alpha)
   if (alpha)
     {
       /* Array is alphasort descending. Reverse it */
-      WikiPageList* temp = malloc(sizeof(WikiPageList));
+      WikiPageList* temp = NULL;
       for (j = 0; j < i/2; j++)
         {
           temp = pages[j];
 		  pages[j] = pages[i-j-1];
 		  pages[i-j-1] = temp;
         }
-	  /* FIXME */
-	  /* free(temp); */
     }
   
   return pages;
