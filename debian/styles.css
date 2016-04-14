@@ -1,16 +1,16 @@
 body {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 90%;  
-  color: #333333;
-  margin: 2px;
-  padding: 2px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 90%;
+    color: #444;
+    padding: 0 20px 0 20px;
 }
 
 #header {
     font-size: 90%;
-    background-color: #eef;
+    background-color: #d9edf7;
     border: 1px solid #aaa;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
     padding: 5px;
     margin-bottom:20px;
 }
@@ -35,10 +35,11 @@ table.wikitable td { background-color: #fff; border: 1px solid #aaa; }
 pre {
     font-family: monospace;
     background-color: #eee;
-    padding: 2px;
-    padding-left: 10px;
+    padding: 4px 10px 4px 10px;
     margin-left: 20px;
     margin-right: 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
 }
 
 hr {
@@ -55,11 +56,12 @@ form {
 }
 
 textarea {
-    border: 1px solid #aaaaaa;
-    color: Black;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    color: #444;
     background-color: white;
     width: 100%;
-    padding: 0.1em;
+    padding: 0.4em;
     overflow: auto;
 }
 
@@ -71,18 +73,17 @@ input {
 }
 
 a, ulink{
-   color: #333;
+   color: #337ab7;
    text-decoration:none;
-   border-bottom: 1px #333 dotted;
    display: inline;
  }
 
 a:hover {
-   color: #333;
+   color: #337ab7;
    text-decoration: None;
    border-bottom: 1px #000 solid;
    }
 
 a:visited {
-   color: #333;
+   color: #337ab7;
 }
