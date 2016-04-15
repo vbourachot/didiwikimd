@@ -2,13 +2,12 @@ Source: didiwiki
 Section: web
 Priority: optional
 Maintainer: Ignace Mouzannar <mouzannar@gmail.com>
-Depends: libmarkdown2
 Build-Depends: debhelper (>= 9), libmarkdown2-dev
 Standards-Version: 3.9.3
 
 Package: didiwiki
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, libmarkdown2
 Description: simple wiki implementation with built-in webserver
  DidiWiki is aimed at those who need a quick and lightweight wiki for
  personal use, such as notes, "to do" lists, etc. It is written in C,
