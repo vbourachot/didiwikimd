@@ -55,15 +55,12 @@
 #define EDITFORM                                                         \
                                                                          \
 "<form method=POST action='%s' name='editform'>\n"                        \
-"<textarea name='wikitext' rows='20' cols='80' wrap='virtual'>%s</textarea>\n" \
+"<textarea name='wikitext' rows='35' cols='80' wrap='virtual'>%s</textarea>\n" \
 "<p><input type='submit' value='Save' title='[alt-k]' accesskey='k'></p>\n"                            \
 "</form>\n"             \
 "<script language='JavaScript'>\n"   \
-"<!--\n"                             \
 "/* Give the textarea focus ...less mouse usage but may annoy people ?*/ \n" \
 "document.editform.wikitext.focus()\n" \
-"document.editform.wikitext.scrollTop = document.editform.wikitext.scrollHeight;\n"          \
-"//-->\n"                            \
 "</script>\n"
 
 
