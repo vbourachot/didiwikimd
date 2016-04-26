@@ -66,127 +66,338 @@
 
 #define HOMETEXT ""                                                      \
                                                                          \
-"==Welcome to !DidiWiki\n"                                               \
-"/!DidiWiki / is a small and simple [http://en.wikipedia.org/wiki/Wiki WikiWikiWeb]\n" \
-"implementation. It's intended for personal note-taking, \"to do\" lists, and any other uses you can think of.\n"                               \
-"\n"                                                                        \
-"To learn more about what a [http://www.c2.com/cgi/wiki?WikiWikiWeb WikiWikiWeb] is, read about [http://www.c2.com/cgi/wiki?WhyWikiWorks WhyWikiWorks] and the [http://www.c2.com/cgi/wiki?WikiNature WikiNature]. Also, consult the [http://www.c2.com/cgi/wiki?WikiWikiWebFaq WikiWikiWebFaq].\n"                      \
-"\n"                                                                        \
-"For an example of how a !DidiWiki entry looks in text form you can [?edit edit] this page. Also see WikiHelp for infomation on usage and formatting rules. Use The WikiSandbox to experiment.\n" \
-"\n"                                                                        \
-"/!DidiWiki / is written by [mailto://mallum@o-hand.com Matthew Allum] in C and is free software, released under the [http://www.gnu.org GNU] [http://www.gnu.org/copyleft/gpl.html GPL]. It uses a formatting style similar to that of [http://www.kwiki.org kwiki] and some webserver code from [http://www.cvstrac.org cvstrac].\n"
+"## Welcome to DidiWiki\n" \
+"**DidiWiki** is a small and simple [WikiWikiWeb](http://en.wikipedia.org/wiki/Wiki) implementation. It's intended for personal note-taking, \"to do\" lists, and any other uses you can think of.\n" \
+"\n" \
+"To learn more about what a [WikiWikiWeb](http://www.c2.com/cgi/wiki?WikiWikiWeb) is, read about [WhyWikiWorks](http://www.c2.com/cgi/wiki?WhyWikiWorks) and the [WikiNature](http://www.c2.com/cgi/wiki?WikiNature). Also, consult the [WikiWikiWebFaq](http://www.c2.com/cgi/wiki?WikiWikiWebFaq).\n" \
+"\n" \
+"For an example of how a DidiWiki entry looks in text form you can [edit](?edit) this page. Also see [WikiHelp](/WikiHelp) for information on usage and formatting rules. Use the [WikiSandbox](/WikiSandbox) to experiment.\n" \
+"\n" \
+"**DidiWiki** is written by Matthew Allum in C and is free software, released under the [GNU](http://www.gnu.org) [GPL](http://www.gnu.org/copyleft/gpl.html). It uses ~~a formatting style similar to that of kwiki~~ Markdown formatting, rendered via [Discount](http://www.pell.portland.or.us/~orc/Code/discount/), and some webserver code from [cvstrac](http://www.cvstrac.org).\n"
 
 
 #define HELPTEXT ""                                                      \
                                                                          \
-"=Quick Guide \n"                                                    \
-"Top toolbar usage\n"                                                    \
-"* [?edit Edit] Allows you to edit pages ( see below for rules )\n"       \
-"* [/WikiHome Home] Takes you to the wiki front page\n"                \
-"* [/Changes Changes] Lists the pages changed by date\n"                  \
-"* [/Create New] Creates a new wiki page by title\n"                      \
-"* [/WikiHelp Help] Takes you to this help page\n"                            \
-"\n"                                                                     \
-"Use the text entry box to perform a very simple keyword search on the\n" \
-"Wiki contents. Hit return to activate the search.\n"                    \
-"\n"                                                                     \
-"Use the WikiSandbox to practice formatting.\n"                         \
-"\n"                                                                     \
-"----\n"                                                                 \
-"=Formatting rules\n"                                                    \
-"\n"                                                                     \
-"=Top Level Heading\n"                                                   \
-"  =Top Level Heading (H1)\n"                                            \
-"==Second Level Heading\n"                                               \
-"  ==Second Level Heading (H2)\n"                                        \
-"More levels \n"                                                         \
-"  === (H3), ==== (H4) etc\n"                                            \
-"----\n"                                                                 \
-"The horizontal lines in this page are made with 4 or more dashes:\n"     \
-" ---- Horizonal line\n"                                                 \
-"----\n"                                                                 \
-"\n"                                                                     \
-"Paragraphs are separated by an empty line\n"                            \
-"\n"                                                                     \
-"Like this. Another paragraph.\n"                                        \
-"\n"                                                                     \
-" Paragraphs are separated by a blank line.\n"                           \
-"\n"                                                                     \
-" Like this. Another paragraph.\n"                                       \
-"----\n"                                                                 \
-"*Bold text*, /italic text/, _underscore text_ and -strikethrough-.\n"    \
-"  *Bold text*, /italic text/, _underscore text_ and -strikethrough-.\n"  \
-"/*Combination of bold and italics*/\n"                                  \
-"  /*Combination of bold and italics*/\n"                                \
-"----\n"                                                                 \
-"\n"                                                                     \
-"WikiLinks are formed by two or more words in /camelcase/.\n"           \
-" WikiLinks are formed by two or more words in /camelcase/.\n"          \
-"External links begin with http://, like http://www.freepan.org\n"       \
-" External links begin with http://, like http://www.freepan.org\n"      \
-"Forced wiki [links] are a alphanumeric string surrounded by square brackets.\n" \
-" Forced wiki [links] are a alphanumeric string surrounded by square brackets.\n" \
-"Named http links have text with an !http:// link inside, like [http://www.freepan.org FreePAN]\n" \
-" Named http links have text with an !http:// link inside, like [http://www.freepan.org FreePAN]\n" \
-"Sometimes !WordsShouldNotMakeAWikiLink so put a '! ' beforehand.\n"      \
-" Sometimes !WordsShouldNotMakeAWikiLink so put a '! ' beforehand.\n"     \
-"Same thing with !http://foobar.com\n"                                   \
-" Same thing with !http://foobar.com\n"                                  \
-"----\n"                                                                 \
-"\n"                                                                     \
-"Links to images display the image:\n"                                   \
-"\n"                                                                     \
-"http://www.google.com/images/logo.gif\n"                                \
-" http://www.google.com/images/logo.gif\n"                               \
-"----\n"                                                                 \
-"Unordered lists begin with a '* '. The number of asterisks determines the level:\n" \
-"* foo\n"                                                                \
-"* bar\n"                                                                \
-"** boom\n"                                                              \
-"** bam\n"                                                               \
-"* baz\n"                                                                \
-"\n"                                                                     \
-"  * foo\n"                                                              \
-"  * bar\n"                                                              \
-"  ** boom\n"                                                            \
-"  ** bam\n"                                                             \
-"  * baz\n"                                                              \
-"\n"                                                                     \
-"Ordered lists work the same, but use a '#'\n"                           \
-"----\n"                                                                 \
-"Tables begin the line with a '|' and before every new column after.\n"  \
-"\n"                                                                     \
-"| row:1,col:1 | row:1,col:2\n"                                          \
-"| row:2,col:1 | row:2,col:2\n"                                          \
-" | row:1,col:1 | row:1,col:2\n"                                         \
-" | row:2,col:1 | row:2,col:2\n"                                         \
-"---\n"                                                                  \
-"<Inline> <html> <is> <escaped>.\n"                                      \
-"\n"                                                                     \
-"----\n"                                                                 \
-"Lines prefixed with a space are unformatted ( Like examples on this page )\n" \
-"\n"                                                                     \
-"----\n"                                                                 \
+"#Quick Guide\n" \
+"\n" \
+"Top toolbar usage:\n" \
+"\n" \
+"* [Edit](?edit) Allows you to edit pages (see below for rules)\n" \
+"* [Home](/WikiHome) Takes you to the wiki front page\n" \
+"* [Index](/Index) Lists all pages alphabetically\n" \
+"* [Changes](/Changes) Lists the pages changed by date\n" \
+"* [New](/Create) Creates a new wiki page by title\n" \
+"* [Help](/WikiHelp) Takes you to this help page\n" \
+"\n" \
+"Use the text entry box to perform a very simple keyword search on the Wiki contents. Hit return to activate the search.\n" \
+"\n" \
+"Use the [WikiSandbox](/WikiSandbox) to practice formatting.\n" \
+"\n" \
+"----\n" \
+"\n" \
+"#Markdown Cheatsheet\n" \
+"\n" \
+"Based on: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)\n" \
+"\n" \
+"## Headers\n" \
+"\n" \
+"```\n" \
+"# H1\n" \
+"## H2\n" \
+"### H3\n" \
+"#### etc\n" \
+"```\n" \
+"\n" \
+"# H1\n" \
+"## H2\n" \
+"### H3\n" \
+"#### etc\n" \
+"\n" \
+"## Emphasis\n" \
+"\n" \
+"```\n" \
+"Emphasis, aka italics, with *asterisks* or _underscores_.\n" \
+"\n" \
+"Strong emphasis, aka bold, with **asterisks** or __underscores__.\n" \
+"\n" \
+"Combined emphasis with **asterisks and _underscores_**.\n" \
+"\n" \
+"Strikethrough uses two tildes. ~~Scratch this.~~\n" \
+"```\n" \
+"\n" \
+"Emphasis, aka italics, with *asterisks* or _underscores_.\n" \
+"\n" \
+"Strong emphasis, aka bold, with **asterisks** or __underscores__.\n" \
+"\n" \
+"Combined emphasis with **asterisks and _underscores_**.\n" \
+"\n" \
+"Strikethrough uses two tildes. ~~Scratch this.~~\n" \
+"\n" \
+"## Code Blocks\n" \
+"Code blocks are part of the Markdown spec, but syntax highlighting isn’t. However, many renderers – like Github’s and Markdown Here – support syntax highlighting. \n" \
+"\n" \
+"*Note: No JS highlighting provided to keep things light.* \n" \
+"\n" \
+"```\n" \
+"Inline `code` has `back-ticks around` it.\n" \
+"```\n" \
+"\n" \
+"Inline `code` has `back-ticks around` it.\n" \
+"\n" \
+"Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. I recommend only using the fenced code blocks.\n" \
+"\n" \
+"<pre lang=\"no-highlight\"><code>```javascript\n" \
+"var s = \"JavaScript syntax highlighting\";\n" \
+"alert(s);\n" \
+"```\n" \
+"\n" \
+"```python\n" \
+"s = \"Python syntax highlighting\"\n" \
+"print s\n" \
+"```\n" \
+"\n" \
+"```\n" \
+"No language indicated, so no syntax highlighting.\n" \
+"```\n" \
+"</code></pre>\n" \
+"\n" \
+"\n" \
+"\n" \
+"```javascript\n" \
+"var s = \"JavaScript syntax highlighting\";\n" \
+"alert(s);\n" \
+"```\n" \
+"\n" \
+"```python\n" \
+"s = \"Python syntax highlighting\"\n" \
+"print s\n" \
+"```\n" \
+"\n" \
+"```\n" \
+"No language indicated, so no syntax highlighting.\n" \
+"```\n" \
+"\n" \
+"## Lists\n" \
+"\n" \
+"\n" \
+"```\n" \
+"1. First ordered list item\n" \
+"2. Another item\n" \
+"3. And another item\n" \
+"\n" \
+"A paragraph to break the previous list\n" \
+"\n" \
+"* Unordered list can use asterisks\n" \
+"- Or minuses\n" \
+"+ Or pluses\n" \
+"```\n" \
+"\n" \
+"1. First ordered list item\n" \
+"2. Another item\n" \
+"3. And another item\n" \
+"\n" \
+"A paragraph to break the previous list\n" \
+"\n" \
+"* Unordered list can use asterisks\n" \
+"- Or minuses\n" \
+"+ Or pluses\n" \
+"\n" \
+"## Links\n" \
+"\n" \
+"There are two ways to create links.\n" \
+"\n" \
+"```\n" \
+"[I\'m an inline-style link](https://www.google.com)\n" \
+"\n" \
+"[I\'m an inline-style link with title](https://www.google.com \"Google\'s Homepage\")\n" \
+"\n" \
+"[I'm a reference-style link][Arbitrary case-insensitive reference text]\n" \
+"\n" \
+"URLs in angle brackets will automatically get turned into links: <http://www.example.com>\n" \
+"\n" \
+"[arbitrary case-insensitive reference text]: https://www.mozilla.org\n" \
+"\n" \
+"\n" \
+"```\n" \
+"\n" \
+"[I\'m an inline-style link](https://www.google.com)\n" \
+"\n" \
+"[I\'m an inline-style link with title](https://www.google.com \"Google\'s Homepage\")\n" \
+"\n" \
+"[I'm a reference-style link][Arbitrary case-insensitive reference text]\n" \
+"\n" \
+"URLs in angle brackets will automatically get turned into links: <http://www.example.com>\n" \
+"\n" \
+"[arbitrary case-insensitive reference text]: https://www.mozilla.org\n" \
+"\n" \
+"## Images\n" \
+"\n" \
+"```\n" \
+"\n" \
+"Inline-style:\n" \
+"\n" \
+"![alt text](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg \"Logo Title Text 1\")\n" \
+"\n" \
+"Reference-style:\n" \
+"\n" \
+"![alt text][logo]\n" \
+"\n" \
+"[logo]: https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg \"Logo Title Text 2\"\n" \
+"```\n" \
+"\n" \
+"Inline-style:\n" \
+"\n" \
+"![alt text](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg \"Logo Title Text 1\")\n" \
+"\n" \
+"Reference-style:\n" \
+"\n" \
+"![alt text][logo]\n" \
+"\n" \
+"[logo]: https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg \"Logo Title Text 2\"\n" \
+"\n" \
+"## Tables\n" \
+"\n" \
+"Tables aren't part of the core Markdown spec, but they are part of GFM and *Markdown Here* supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.\n" \
+"\n" \
+"```\n" \
+"Colons can be used to align columns.\n" \
+"\n" \
+"| Tables        | Are           | Cool  |\n" \
+"| ------------- |:-------------:| -----:|\n" \
+"| col 3 is      | right-aligned | $1600 |\n" \
+"| col 2 is      | centered      |   $12 |\n" \
+"| zebra stripes | are neat      |    $1 |\n" \
+"\n" \
+"There must be at least 3 dashes separating each header cell.\n" \
+"The outer pipes (|) are optional, and you don't need to make the\n" \
+"raw Markdown line up prettily. You can also use inline Markdown.\n" \
+"\n" \
+"Markdown | Less | Pretty\n" \
+"--- | --- | ---\n" \
+"*Still* | `renders` | **nicely**\n" \
+"1 | 2 | 3\n" \
+"```\n" \
+"\n" \
+"Colons can be used to align columns.\n" \
+"\n" \
+"| Tables        | Are           | Cool |\n" \
+"| ------------- |:-------------:| -----:|\n" \
+"| col 3 is      | right-aligned | $1600 |\n" \
+"| col 2 is      | centered      |   $12 |\n" \
+"| zebra stripes | are neat      |    $1 |\n" \
+"\n" \
+"There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.\n" \
+"\n" \
+"Markdown | Less | Pretty\n" \
+"--- | --- | ---\n" \
+"*Still* | `renders` | **nicely**\n" \
+"1 | 2 | 3\n" \
+"\n" \
+"## Blockquotes\n" \
+"\n" \
+"```\n" \
+"> Blockquotes are very handy in email to emulate reply text.\n" \
+"> This line is part of the same quote.\n" \
+"\n" \
+"Quote break.\n" \
+"\n" \
+"> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.\n" \
+"```\n" \
+"\n" \
+"> Blockquotes are very handy in email to emulate reply text.\n" \
+"> This line is part of the same quote.\n" \
+"\n" \
+"Quote break.\n" \
+"\n" \
+"> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.\n" \
+"\n" \
+"## Horizontal Rule\n" \
+"\n" \
+"```\n" \
+"Three or more...\n" \
+"\n" \
+"---\n" \
+"\n" \
+"Hyphens\n" \
+"\n" \
+"***\n" \
+"\n" \
+"Asterisks\n" \
+"\n" \
+"___\n" \
+"\n" \
+"Underscores\n" \
+"```\n" \
+"\n" \
+"Three or more...\n" \
+"\n" \
+"---\n" \
+"\n" \
+"Hyphens\n" \
+"\n" \
+"***\n" \
+"\n" \
+"Asterisks\n" \
+"\n" \
+"___\n" \
+"\n" \
+"Underscores\n" \
+"\n" \
+"## Line Breaks\n" \
+"\n" \
+"Basic rules: \n" \
+"\n" \
+"* Two newlines create a new paragraph\n" \
+"* Two spaces at the end of a line create a line break within the same paragraph\n" \
+"* A single newline is ignored\n" \
+"\n" \
+"```\n" \
+"Here's a line for us to start with.\n" \
+"\n" \
+"This line is separated from the one above by two newlines, so it will be a *separate paragraph*.\n" \
+"\n" \
+"This line also begins a separate paragraph, but ends with two spaces ..  \n" \
+"And this line is only separated by a single newline, so it's a separate line in the *same paragraph*.\n" \
+"\n" \
+"This line also begins a separate paragraph, but does NOT end with two spaces\n" \
+"The single newline is ignored and the line is appended to the current paragraph.\n" \
+"\n" \
+"```\n" \
+"\n" \
+"Here's a line for us to start with.\n" \
+"\n" \
+"This line is separated from the one above by two newlines, so it will be a *separate paragraph*.\n" \
+"\n" \
+"This line also begins a separate paragraph, but ends with two spaces  \n" \
+"And this line is only separated by a single newline, so it's a separate line in the *same paragraph*.\n" \
+"\n" \
+"This line also begins a separate paragraph, but does NOT end with two spaces\n" \
+"The single newline is ignored and the line is appended to the current paragraph.\n" \
+"\n" \
+"---\n" \
+"\n" \
+"Cheatsheet license: [CC-BY](https://creativecommons.org/licenses/by/3.0/)\n"
 
 
 #define STYLESHEET                                                       \
                                                                          \
 "body {\n" \
-"  font-family: Verdana, Arial, Helvetica, sans-serif;\n" \
-"  font-size: 90%;  \n" \
-"  color: #333333;\n" \
-"  margin: 2px;\n" \
-"  padding: 2px;\n" \
+"    font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n" \
+"    font-size: 90%;\n" \
+"    color: #444;\n" \
+"    padding: 0 20px 0 20px;\n" \
 "}\n" \
 "\n" \
 "#header {\n" \
 "    font-size: 90%;\n" \
-"    background-color: #eef;\n" \
-"    border: 1px solid #aaa;\n" \
-"    font-family: Verdana, Arial, Helvetica, sans-serif;\n" \
+"    background-color: #eee;\n" \
+"    border: 1px solid #eee;\n" \
+"    border-radius: 4px;\n" \
+"    font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n" \
 "    padding: 5px;\n" \
 "    margin-bottom:20px;\n" \
 "}\n" \
+"\n" \
 "#header input {\n" \
 "    margin:0px;\n" \
 "    padding: 0;\n" \
@@ -202,24 +413,31 @@
 "    width: 100%;\n" \
 "    text-align: center;\n" \
 "}\n" \
+"\n" \
 "table.wikitable { background-color: #fff; border: 1px solid #aaa; }\n" \
 "table.wikitable td { background-color: #fff; border: 1px solid #aaa; }\n" \
 "\n" \
+"code {\n" \
+"    font-size: 110%;\n" \
+"    background-color: #fffddc;\n" \
+"}\n" \
+"\n" \
 "pre {\n" \
 "    font-family: monospace;\n" \
-"    background-color: #eee;\n" \
-"    padding: 2px;\n" \
-"    padding-left: 10px;\n" \
+"    background-color: #fffddc;\n" \
+"    padding: 4px 10px 4px 10px;\n" \
 "    margin-left: 20px;\n" \
 "    margin-right: 20px;\n" \
+"    border: 1px solid #e1e1e1;\n" \
+"    border-radius: 4px;\n" \
 "}\n" \
 "\n" \
 "hr {\n" \
-" height: 1px;\n" \
-" color: #aaaaaa;\n" \
-" background-color: #aaaaaa;\n" \
-" border: 0;\n" \
-" margin: 0.2em 5px 0.2em 5px;\n" \
+"    height: 1px;\n" \
+"    color: #aaaaaa;\n" \
+"    background-color: #aaaaaa;\n" \
+"    border: 0;\n" \
+"    margin: 0.2em 5px 0.2em 5px;\n" \
 "}\n" \
 "\n" \
 "form {\n" \
@@ -228,11 +446,14 @@
 "}\n" \
 "\n" \
 "textarea {\n" \
-"    border: 1px solid #aaaaaa;\n" \
-"    color: Black;\n" \
+"    font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n" \
+"    font-size: 90%;\n" \
+"    border: 1px solid #e1e1e1;\n" \
+"    border-radius: 4px;\n" \
+"    color: #444;\n" \
 "    background-color: white;\n" \
 "    width: 100%;\n" \
-"    padding: 0.1em;\n" \
+"    padding: 0.4em;\n" \
 "    overflow: auto;\n" \
 "}\n" \
 "\n" \
@@ -243,23 +464,21 @@
 "    border: 1px solid #aaaaaa;\n" \
 "}\n" \
 "\n" \
-"a, ulink{\n" \
-"   color: #333;\n" \
-"   text-decoration:none;\n" \
-"   border-bottom: 1px #333 dotted;\n" \
-"   display: inline;\n" \
-" }\n" \
-"\n" \
-"a:hover {\n" \
-"   color: #333;\n" \
-"   text-decoration: None;\n" \
-"   border-bottom: 1px #000 solid;\n" \
-"   }\n" \
-"\n" \
-"a:visited {\n" \
-"   color: #333;\n" \
+"a, ulink {\n" \
+"    color: #337ab7;\n" \
+"    text-decoration:none;\n" \
+"    display: inline;\n" \
 "}\n" \
 "\n" \
+"a:hover {\n" \
+"    color: #337ab7;\n" \
+"    text-decoration: None;\n" \
+"    border-bottom: 1px #000 solid;\n" \
+"}\n" \
+"\n" \
+"a:visited {\n" \
+"    color: #337ab7;\n" \
+"}\n"
 
 /* use xdd -i favicon.ico to generate */
 
