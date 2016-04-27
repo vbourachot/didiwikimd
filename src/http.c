@@ -586,8 +586,7 @@ http_server(struct in_addr address, int iPort)
 	}
       
       /* Bury dead children */
-      while( waitpid(0, 0, WNOHANG)>0 ) nchildren--;
-
+      while( waitpid(0, 0, 0)>0 ) nchildren--;
       
     }
 
