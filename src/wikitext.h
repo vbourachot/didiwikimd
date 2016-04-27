@@ -296,7 +296,7 @@
 "## Blockquotes\n" \
 "\n" \
 "```\n" \
-"> Blockquotes are very handy in email to emulate reply text.\n" \
+"> Blockquotes are very handy in email to emulate reply text.  \n" \
 "> This line is part of the same quote.\n" \
 "\n" \
 "Quote break.\n" \
@@ -304,7 +304,7 @@
 "> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.\n" \
 "```\n" \
 "\n" \
-"> Blockquotes are very handy in email to emulate reply text.\n" \
+"> Blockquotes are very handy in email to emulate reply text.  \n" \
 "> This line is part of the same quote.\n" \
 "\n" \
 "Quote break.\n" \
@@ -430,6 +430,7 @@
 "    margin-right: 20px;\n" \
 "    border: 1px solid #e1e1e1;\n" \
 "    border-radius: 4px;\n" \
+"    white-space: pre-wrap;\n" \
 "}\n" \
 "\n" \
 "hr {\n" \
