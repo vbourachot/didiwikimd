@@ -75,8 +75,8 @@ wiki_print_data_as_html(HttpResponse *res, char *raw_page_data)
   char *buffer;
   
   doc = mkd_string(raw_page_data, strlen(raw_page_data), \
-				   MKD_TOC | MKD_EXTRA_FOOTNOTE );
-  mkd_compile(doc, MKD_TOC | MKD_EXTRA_FOOTNOTE);
+				   MKD_TOC | MKD_EXTRA_FOOTNOTE | MKD_FENCEDCODE);
+  mkd_compile(doc, MKD_TOC | MKD_EXTRA_FOOTNOTE | MKD_FENCEDCODE);
   mkd_document(doc, &buffer);
   http_response_printf(res, buffer);
   mkd_cleanup(doc);
